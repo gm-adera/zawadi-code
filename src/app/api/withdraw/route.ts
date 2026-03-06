@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
         account_number,
         account_name,
         bank_code: method === 'mpesa' ? MPESA_BANK_CODES[profile.country] || 'MPS' : bank_code,
-        flutterwave_ref: reference,
+        mpesa_ref: reference,
       })
       .select()
       .single()
@@ -93,7 +93,7 @@ export async function POST(req: NextRequest) {
     await admin
       .from('withdrawals')
       .update({
-        flutterwave_transfer_id: transfer.transferId,
+        mpesa_transfer_id: transfer.transferId,
         status: 'processing',
       })
       .eq('id', withdrawal.id)
@@ -105,7 +105,7 @@ export async function POST(req: NextRequest) {
       amount: -amount,
       currency: currency || profile.currency,
       description: `Withdrawal via ${method} to ${account_number}`,
-      flutterwave_ref: reference,
+      mpesa_ref: reference,
     })
 
     return NextResponse.json({
