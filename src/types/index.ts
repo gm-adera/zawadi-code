@@ -3,7 +3,7 @@ export type BookingStatus = 'pending' | 'accepted' | 'declined' | 'completed' | 
 export type PaymentMode = 'escrow' | 'upfront'
 export type EscrowStatus = 'held' | 'released' | 'refunded' | 'disputed'
 export type WithdrawalStatus = 'pending' | 'processing' | 'completed' | 'failed'
-export type WithdrawalMethod = 'mpesa' | 'bank' | 'chipper' | 'flutterwave'
+export type WithdrawalMethod = 'mpesa' | 'bank'
 export type CurrencyCode = 'KES' | 'NGN' | 'GHS' | 'UGX' | 'TZS' | 'ZAR'
 
 export interface Profile {

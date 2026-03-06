@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createSupabaseAdmin } from '@/lib/supabase'
 import { createSupabaseServer } from '@/lib/supabase-server'
-import { initiateFlutterwaveTransfer, generateTxRef } from '@/lib/mpesa'
+import { initiateMpesaStkPush } from '@/lib/mpesa'
 import { CurrencyCode } from '@/types'
 
 // M-Pesa bank codes for Flutterwave

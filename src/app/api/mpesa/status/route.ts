@@ -24,7 +24,6 @@ export async function GET(req: NextRequest) {
     // Check if booking is already verified via callback
     const { data: booking } = await admin
       .from('bookings')
-      .select('payment_verified, status, flutterwave_tx_id')
       .eq('id', bookingId)
       .eq('client_id', user.id)
       .single()
@@ -35,7 +34,6 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({
         status: 'completed',
         paid: true,
-        receipt: booking.flutterwave_tx_id,
       })
     }
 

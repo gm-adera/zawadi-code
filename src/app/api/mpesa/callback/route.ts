@@ -16,11 +16,9 @@ export async function POST(req: NextRequest) {
     const result = parseMpesaCallback(body)
     const admin = createSupabaseAdmin()
 
-    // Find booking by checkout request ID (stored in flutterwave_tx_ref field)
     const { data: booking, error: findErr } = await admin
       .from('bookings')
       .select('*')
-      .eq('flutterwave_tx_ref', result.checkoutRequestId)
       .single()
 
     if (findErr || !booking) {
@@ -35,7 +33,6 @@ export async function POST(req: NextRequest) {
         .from('bookings')
         .update({
           payment_verified: true,
-          flutterwave_tx_id: result.mpesaReceiptNumber, // store M-Pesa receipt
         })
         .eq('id', booking.id)
 
@@ -47,7 +44,6 @@ export async function POST(req: NextRequest) {
         amount: result.amount || booking.transport_amount,
         currency: 'KES',
         description: `M-Pesa payment ${result.mpesaReceiptNumber} — escrow locked`,
-        flutterwave_ref: result.mpesaReceiptNumber,
       })
 
       console.log(`[M-Pesa Callback] ✅ Payment confirmed for booking ${booking.id} — ${result.mpesaReceiptNumber}`)

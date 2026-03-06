@@ -69,7 +69,6 @@ export async function POST(req: NextRequest) {
     // Store checkout request ID on the booking for callback matching
     await admin
       .from('bookings')
-      .update({ flutterwave_tx_ref: stkResult.checkoutRequestId }) // reusing field for mpesa
       .eq('id', booking.id)
 
     // Store pending escrow
