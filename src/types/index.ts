@@ -59,8 +59,8 @@ export interface Booking {
   transport_amount: number
   currency: CurrencyCode
   message?: string
-  flutterwave_tx_ref?: string
-  flutterwave_tx_id?: string
+  mpesa_tx_ref?: string
+  mpesa_tx_id?: string
   payment_verified: boolean
   created_at: string
   accepted_at?: string
@@ -103,7 +103,7 @@ export interface Transaction {
   currency: CurrencyCode
   balance_after?: number
   description?: string
-  flutterwave_ref?: string
+  mpesa_ref?: string
   created_at: string
 }
 
@@ -117,7 +117,7 @@ export interface Withdrawal {
   account_number?: string
   account_name?: string
   bank_code?: string
-  flutterwave_transfer_id?: string
+  mpesa_transfer_id?: string
   failure_reason?: string
   created_at: string
   processed_at?: string
