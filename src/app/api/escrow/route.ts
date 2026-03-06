@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createSupabaseAdmin, createSupabaseServer } from '@/lib/supabase'
+import { createSupabaseAdmin } from '@/lib/supabase'
+import { createSupabaseServer } from '@/lib/supabase-server'
 import { initiateFlutterwaveTransfer, generateTxRef } from '@/lib/flutterwave'
 
 // POST /api/escrow — release or dispute escrow
