@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gold: #C9A84C;
+  --gold-light: #E8C97A;
+  --gold-dark: #8B6914;
+  --deep: #0D0A06;
+  --dark: #1A1510;
+  --card: #231E16;
+  --card2: #2E2720;
+  --text: #F5EDD8;
+  --muted: #A09070;
+  --accent: #E85D26;
+  --green: #2ECC71;
+  --red: #E74C3C;
+  --border: rgba(201, 168, 76, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--deep);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  background-image:
+    radial-gradient(ellipse at 10% 20%, rgba(201, 168, 76, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 80%, rgba(232, 93, 38, 0.04) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--dark); }
+::-webkit-scrollbar-thumb { background: var(--card2); border-radius: 3px; }
+
+/* Typography */
+.font-playfair { font-family: 'Playfair Display', serif; }
+
+/* Gold shimmer animation */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.gold-shimmer {
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Zawadi button styles */
+.btn-gold {
+  @apply bg-gold text-deep font-semibold rounded-full px-6 py-3 transition-all duration-200;
+}
+.btn-gold:hover {
+  @apply bg-gold-light -translate-y-0.5;
+  box-shadow: 0 12px 40px rgba(201, 168, 76, 0.4);
+}
+
+.btn-outline {
+  @apply border border-[var(--border)] text-[var(--text)] rounded-full px-6 py-3 transition-all duration-200 bg-transparent;
+}
+.btn-outline:hover {
+  @apply border-gold text-gold;
+}
+
+/* Card */
+.zawadi-card {
+  @apply rounded-2xl border bg-card;
+  border-color: var(--border);
+}
+
+/* Input */
+.zawadi-input {
+  @apply w-full px-4 py-3 rounded-xl bg-card border text-[var(--text)] outline-none transition-colors duration-200;
+  border-color: var(--border);
+  font-family: 'DM Sans', sans-serif;
+}
+.zawadi-input:focus {
+  border-color: var(--gold);
+}
+.zawadi-input::placeholder {
+  color: var(--muted);
+}
+
+/* Escrow badge */
+.badge-held { @apply text-xs font-semibold px-3 py-1 rounded-full; background: rgba(201,168,76,0.15); color: var(--gold); }
+.badge-released { @apply text-xs font-semibold px-3 py-1 rounded-full; background: rgba(46,204,113,0.15); color: #2ECC71; }
+.badge-pending { @apply text-xs font-semibold px-3 py-1 rounded-full; background: rgba(232,93,38,0.15); color: var(--accent); }
+.badge-disputed { @apply text-xs font-semibold px-3 py-1 rounded-full; background: rgba(231,76,60,0.15); color: #E74C3C; }
